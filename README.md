@@ -1,6 +1,6 @@
 # Assignment 3: All about Fold (160 points)
 
-## Due by Wednesday 5/15, 23:59:59
+## Due by Friday 2/14, 23:59:59
 
 ## Overview
 
