@@ -1,8 +1,9 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 {- | CSE 130: All about fold.
 
-  You may use any functions available to you without modifying the imports. (You
-  can look at Cse130Prelude.hs for the complete list.)
+  You may use any functions available to you without modifying the imports. You
+  can look at Cse130Prelude.hs for the complete list. In particular, you may
+  find zip/unzip useful.
 
   Do not change the skeleton code! The point of this assignment is to figure out
   how the functions can be written this way (using fold). You may only replace
@@ -27,8 +28,8 @@ import Cse130Prelude
 sqSum :: [Int] -> Int
 sqSum xs = foldl' f base xs
   where
-   f a x = error "TBD: sqSum f"
-   base  = error "TBD: sqSum base"
+   f acc elem = error "TBD: sqSum: f"
+   base       = error "TBD: sqSum: base"
 
 --------------------------------------------------------------------------------
 -- | `pipe [f1,...,fn] x` should return `f1(f2(...(fn x)))`
@@ -45,8 +46,8 @@ sqSum xs = foldl' f base xs
 pipe :: [(a -> a)] -> (a -> a)
 pipe fs   = foldl' f base fs
   where
-    f a x = error "TBD: pipe: f"
-    base  = error "TBD: pipe: base"
+    f acc elem = error "TBD: pipe: f"
+    base       = error "TBD: pipe: base"
 
 --------------------------------------------------------------------------------
 -- | `sepConcat sep [s1,...,sn]` returns `s1 ++ sep ++ s2 ++ ... ++ sep ++ sn`
@@ -64,9 +65,9 @@ sepConcat :: String -> [String] -> String
 sepConcat sep []     = ""
 sepConcat sep (x:xs) = foldl' f base l
   where
-    f a x            = error "TBD:sepConcat:f"
-    base             = error "TBD:sepConcat:base"
-    l                = error "TBD:l"
+    f acc elem       = error "TBD: sepConcat: f"
+    base             = error "TBD: sepConcat: base"
+    l                = error "TBD: sepConcat: l"
 
 intString :: Int -> String
 intString = show
@@ -85,7 +86,7 @@ intString = show
 -- "[[1, 2, 3], [4, 5], [6], []]"
 
 stringOfList :: (a -> String) -> [a] -> String
-stringOfList f xs = error "TBD:stringOfList"
+stringOfList f xs = error "TBD: stringOfList"
 
 --------------------------------------------------------------------------------
 -- | `clone x n` returns a `[x,x,...,x]` containing `n` copies of `x`
@@ -97,7 +98,7 @@ stringOfList f xs = error "TBD:stringOfList"
 -- ["foo", "foo"]
 
 clone :: a -> Int -> [a]
-clone x n = error "TBD:clone"
+clone x n = error "TBD: clone"
 
 type BigInt = [Int]
 
@@ -113,7 +114,7 @@ type BigInt = [Int]
 -- [1,0,0,2] [0,0,9,9]
 
 padZero :: BigInt -> BigInt -> (BigInt, BigInt)
-padZero l1 l2 = error "TBD:padZero"
+padZero l1 l2 = error "TBD: padZero"
 
 --------------------------------------------------------------------------------
 -- | `removeZero ds` strips out all leading `0` from the left-side of `ds`.
@@ -128,7 +129,7 @@ padZero l1 l2 = error "TBD:padZero"
 -- []
 
 removeZero :: BigInt -> BigInt
-removeZero ds = error "TBD:removeZero"
+removeZero ds = error "TBD: removeZero"
 
 
 --------------------------------------------------------------------------------
@@ -145,9 +146,9 @@ bigAdd l1 l2     = removeZero res
   where
     (l1', l2')   = padZero l1 l2
     res          = foldl' f base args
-    f a x        = error "TBD:bigAdd:f"
-    base         = error "TBD:bigAdd:base"
-    args         = error "TBD:bigAdd:args"
+    f acc elem   = error "TBD: bigAdd: f"
+    base         = error "TBD: bigAdd: base"
+    args         = error "TBD: bigAdd: args"
 
 
 --------------------------------------------------------------------------------
@@ -172,7 +173,7 @@ mulByDigit i n = error "TBD:mulByDigit"
 bigMul :: BigInt -> BigInt -> BigInt
 bigMul l1 l2 = res
   where
-    (_, res) = foldl' f base args
-    f a x    = error "TBD:bigMul:f"
-    base     = error "TBD:bigMul:base"
-    args     = error "TBD:bigMul:args"
+    (_, res)   = foldl' f base args
+    f acc elem = error "TBD: bigMul: f"
+    base       = error "TBD: bigMul: base"
+    args       = error "TBD: bigMul: args"
