@@ -1,30 +1,16 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 {- | CSE 130: All about fold.
 
-  You may use any of the functions we import.
+  You may use any functions available to you without modifying the imports. (You
+  can look at Cse130Prelude.hs for the complete list.)
 
-  Do not change the skeleton code! The point of this assignment
-  is to figure out how the functions can be written this way
-  (using fold). You may only replace the `error "TBD:..."` terms.
+  Do not change the skeleton code! The point of this assignment is to figure out
+  how the functions can be written this way (using fold). You may only replace
+  the `error "TBD:..."` terms.
 -}
 module Hw3 where
 
-import Prelude (Int, error, Show(..), String)
-import Data.List
-  ( length
-  , (++)
-  , map
-  , unzip
-  , zip
-  , reverse
-  )
-import qualified Data.List (foldl', foldr)
-
-foldl' :: (b -> a -> b) -> b -> [a] -> b
-foldl' = Data.List.foldl'
-
-foldr :: (a -> b -> b) -> b -> [a] -> b
-foldr = Data.List.foldr
+import Cse130Prelude
 
 --------------------------------------------------------------------------------
 -- | sqSum [x1, ... , xn] should return (x1^2 + ... + xn^2)

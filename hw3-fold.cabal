@@ -11,8 +11,8 @@ cabal-version:       >=1.10
 
 Library
   ghc-options:         -W -threaded
-  exposed-modules:     Hw3 
-
+  exposed-modules:     Hw3
+  other-modules:       Cse130Prelude
   -- other-extensions:
   build-depends:       array,
                        base
@@ -25,6 +25,7 @@ test-suite test
   type:             exitcode-stdio-1.0
   hs-source-dirs:   tests
   ghc-options:      -threaded
+  other-modules:    Common
   main-is:          Test.hs
   build-depends:    base,
                     directory,
@@ -33,4 +34,4 @@ test-suite test
                     random,
                     tasty,
                     tasty-hunit,
-                    hw3-fold 
+                    hw3-fold
