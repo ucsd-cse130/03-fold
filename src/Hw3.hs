@@ -1,31 +1,30 @@
+{-# LANGUAGE NoImplicitPrelude #-}
 {- | CSE 130: All about fold.
 
-     For this assignment, you may use the following library functions:
-
-     length
-     append (++)
-     map
-     foldl'
-     foldr
-     unzip
-     zip
-     reverse
-
-  Use www.haskell.org/hoogle to learn more about the above.
+  You may use any of the functions we import.
 
   Do not change the skeleton code! The point of this assignment
   is to figure out how the functions can be written this way
   (using fold). You may only replace the `error "TBD:..."` terms.
-
 -}
-
 module Hw3 where
 
-import Prelude hiding (replicate, sum)
-import Data.List (foldl')
+import Prelude (Int, error, Show(..), String)
+import Data.List
+  ( length
+  , (++)
+  , map
+  , unzip
+  , zip
+  , reverse
+  )
+import qualified Data.List (foldl', foldr)
 
-foldLeft :: (a -> b -> a) -> a -> [b] -> a
-foldLeft = foldl'
+foldl' :: (b -> a -> b) -> b -> [a] -> b
+foldl' = Data.List.foldl'
+
+foldr :: (a -> b -> b) -> b -> [a] -> b
+foldr = Data.List.foldr
 
 --------------------------------------------------------------------------------
 -- | sqSum [x1, ... , xn] should return (x1^2 + ... + xn^2)
@@ -40,7 +39,7 @@ foldLeft = foldl'
 -- 30
 
 sqSum :: [Int] -> Int
-sqSum xs = foldLeft f base xs
+sqSum xs = foldl' f base xs
   where
    f a x = error "TBD: sqSum f"
    base  = error "TBD: sqSum base"
@@ -58,7 +57,7 @@ sqSum xs = foldLeft f base xs
 -- 24
 
 pipe :: [(a -> a)] -> (a -> a)
-pipe fs   = foldLeft f base fs
+pipe fs   = foldl' f base fs
   where
     f a x = error "TBD: pipe: f"
     base  = error "TBD: pipe: base"
@@ -77,7 +76,7 @@ pipe fs   = foldLeft f base fs
 
 sepConcat :: String -> [String] -> String
 sepConcat sep []     = ""
-sepConcat sep (x:xs) = foldLeft f base l
+sepConcat sep (x:xs) = foldl' f base l
   where
     f a x            = error "TBD:sepConcat:f"
     base             = error "TBD:sepConcat:base"
@@ -159,7 +158,7 @@ bigAdd :: BigInt -> BigInt -> BigInt
 bigAdd l1 l2     = removeZero res
   where
     (l1', l2')   = padZero l1 l2
-    res          = foldLeft f base args
+    res          = foldl' f base args
     f a x        = error "TBD:bigAdd:f"
     base         = error "TBD:bigAdd:base"
     args         = error "TBD:bigAdd:args"
@@ -187,7 +186,7 @@ mulByDigit i n = error "TBD:mulByDigit"
 bigMul :: BigInt -> BigInt -> BigInt
 bigMul l1 l2 = res
   where
-    (_, res) = foldLeft f base args
+    (_, res) = foldl' f base args
     f a x    = error "TBD:bigMul:f"
     base     = error "TBD:bigMul:base"
     args     = error "TBD:bigMul:args"

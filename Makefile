@@ -1,36 +1,17 @@
+test:
+	stack test
 
-#####################################################################################################
-COURSE=cs130sp19
-ASGN=03
-NAME=fold
-STACK=stack --allow-different-user
-BUILD_OPTS=--ghc-options -O0 
-#####################################################################################################
+build:
+	stack build
 
-test: clean
-	$(STACK) test $(BUILD_OPTS)
+clean:
+	stack clean
 
-bin:
-	$(STACK) build $(BUILD_OPTS)
-
-clean: 
-	$(STACK) clean
-
-distclean: clean 
-	rm -rf .stack-work 
-
-tags:
-	hasktags -x -c lib/
+ghci:
+	stack ghci
 
 turnin:
 	git commit -a -m "turnin"
 	git push origin master
 
-upstream:
-	git remote add upstream https://github.com/ucsd-cse130/02-random-art.git
-
-update:
-	git pull upstream master
-
-ghci:
-	$(STACK) exec -- ghci
+.PHONY: test build clean ghci turnin
