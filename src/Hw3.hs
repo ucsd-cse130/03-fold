@@ -145,7 +145,7 @@ bigAdd :: BigInt -> BigInt -> BigInt
 bigAdd l1 l2     = removeZero res
   where
     (l1', l2')   = padZero l1 l2
-    res          = foldl' f base args
+    (_, res)     = foldl' f base args
     f acc elem   = error "TBD: bigAdd: f"
     base         = error "TBD: bigAdd: base"
     args         = error "TBD: bigAdd: args"
