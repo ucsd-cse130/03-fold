@@ -200,7 +200,7 @@ You should get the following behavior:
 ghci> stringOfList show [1, 2, 3, 4, 5, 6]
 "[1, 2, 3, 4, 5, 6]"
 
-ghci> stringOfList (fun x -> x) ["foo"]
+ghci> stringOfList (\x -> x) ["foo"]
 "[foo]"
 
 ghci> stringOfList (stringOfList show) [[1, 2, 3], [4, 5], [6], []]
