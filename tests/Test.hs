@@ -32,14 +32,17 @@ unit sc = testGroup "Unit 2" [
   scoreTest(removeZero, [0,0,0,1,0,0,2], [1,0,0,2],1,"removeZero 1"),
   scoreTest(removeZero, [9,9], [9,9],1,"removeZero 2"),
 
-  scoreTest(uncurry bigAdd,  ([9,9],[1,0,0,2]), [1,1,0,1],1, "bigAdd 1"),
-  scoreTest(uncurry bigAdd,  ([9,9,9,9],[9,9,9]), [1,0,9,9,8],1, "bigAdd 2"),
+  scoreTest(normalize . uncurry bigAdd,  ([9,9],[1,0,0,2]), [1,1,0,1],1, "bigAdd 1"),
+  scoreTest(normalize . uncurry bigAdd,  ([9,9,9,9],[9,9,9]), [1,0,9,9,8],1, "bigAdd 2"),
 
-  scoreTest(uncurry mulByDigit,  (9,[9,9,9,9]), [8,9,9,9,1],1, "mulByDigit 1"),
+  scoreTest(normalize . uncurry mulByDigit,  (9,[9,9,9,9]), [8,9,9,9,1],1, "mulByDigit 1"),
 
-  scoreTest(uncurry bigMul,  ([9,9,9,9],[9,9,9,9]), [9,9,9,8,0,0,0,1],1, "bigMul 1"),
-  scoreTest(uncurry bigMul,  ([9,9,9,9,9],[9,9,9,9,9]), [9,9,9,9,8,0,0,0,0,1],1,"bigMul 2")
+  scoreTest(normalize . uncurry bigMul,  ([9,9,9,9],[9,9,9,9]), [9,9,9,8,0,0,0,1],1, "bigMul 1"),
+  scoreTest(normalize . uncurry bigMul,  ([9,9,9,9,9],[9,9,9,9,9]), [9,9,9,9,8,0,0,0,0,1],1,"bigMul 2")
   ]
   where
     scoreTest :: (Show b, Eq b) => (a -> b, a, b, Int, String) -> TestTree
     scoreTest (f, x, r, n, msg) = scoreTest' sc (return . f, x, r, n, msg)
+   
+    normalize :: [Int] -> [Int]
+    normalize xs = dropWhile (== 0) xs
