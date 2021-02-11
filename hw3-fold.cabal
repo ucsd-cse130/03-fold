@@ -32,6 +32,6 @@ test-suite test
                     filepath,
                     process,
                     random,
-                    tasty,
+                    tasty == 1.4.0.*,
                     tasty-hunit,
                     hw3-fold

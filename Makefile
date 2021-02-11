@@ -1,17 +1,31 @@
-test:
-	stack test
 
-build:
-	stack build
+STACK=stack --allow-different-user
+BUILD_OPTS=--ghc-options -O0 
 
-clean:
-	stack clean
+test: clean
+	$(STACK) test $(BUILD_OPTS)
+
+bin:
+	$(STACK) build $(BUILD_OPTS)
+
+clean: 
+	$(STACK) clean
+
+distclean: clean 
+	rm -rf .stack-work 
+
+tags:
+	hasktags -x -c lib/
 
 ghci:
-	stack ghci
+	$(STACK) exec -- ghci
 
-turnin:
+turnin: 
 	git commit -a -m "turnin"
 	git push origin master
 
-.PHONY: test build clean ghci turnin
+upstream:
+	git remote add upstream https://github.com/ucsd-cse130/03-fold.git
+
+update:
+	git pull upstream master
