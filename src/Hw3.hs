@@ -108,10 +108,10 @@ type BigInt = [Int]
 --   are equal.
 --
 -- >>> padZero [9,9] [1,0,0,2]
--- [0,0,9,9] [1,0,0,2]
+-- ([0,0,9,9], [1,0,0,2])
 --
 -- >>> padZero [1,0,0,2] [9,9]
--- [1,0,0,2] [0,0,9,9]
+-- ([1,0,0,2], [0,0,9,9])
 
 padZero :: BigInt -> BigInt -> (BigInt, BigInt)
 padZero l1 l2 = error "TBD: padZero"
